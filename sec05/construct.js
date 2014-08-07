@@ -1,4 +1,5 @@
 exports.construct = construct;
+exports.cat = cat;
 
 var _ = require('underscore');
 var existy = require('./truthy.js').existy;

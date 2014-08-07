@@ -1,8 +1,8 @@
 exports.checker = checker;
 exports.validator = validator;
-
+exports.hasKeys = hasKeys;
 var _ = require('underscore');
-//var cat = require('./cat.js').cat;
+var cat = require('./cat.js').cat;
 
 function checker(/* 検証関数 */) {
   var validators = _.toArray(arguments);
