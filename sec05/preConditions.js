@@ -2,9 +2,10 @@ var _ = require('underscore');
 var validator = require('./objectValidator.js').validator;
 var hasKeys   = require('./objectValidator.js').hasKeys;
 var mapcat    = require('./cat.js').mapcat;
+var cat       = require('./cat.js').cat;
 var partial1  = require('./partialApplication.js').partial1;
 var partial   = require('./partialApplication.js').partial;
-
+var curry2    = require('./curry.js').curry2;
 
 //////////////////////////////////
 var p = console.log;
@@ -106,3 +107,51 @@ var createLaunchCommand = partial1(
 //p(createLaunchCommand({msg: "", type: ""}));
 //p(createLaunchCommand({msg: "", type: "", countDown: 20}));
 //p(createLaunchCommand({type: "", countDown: 20}));
+
+////////////////////////////
+
+// function isntString(str) {
+//   return !_.isString(str);
+// }
+//var isntString = _.compose(function(x) { return !x; }, _.isString);
+function not (x) {
+  return !x;
+}
+
+var isntString = _.compose(not, _.isString);
+
+//p(isntString(1));
+
+
+///////////////////////////////////////////
+function splat (fun) {
+  return function(array) {
+    return fun.apply(null, array);
+  };
+}
+
+var composedMapcat = _.compose(splat(cat), _.map);
+
+//p(composedMapcat([[1,2],[3,4],[5]], _.identity));
+
+
+/////////////////////////////////////////////
+
+var greaterThan = curry2(function(lhs, rhs) { return lhs > rhs; });
+
+var sqrPost = condition1(
+  validator("結果は数値である必要があります", _.isNumber),
+  validator("結果はゼロでない必要があります", complement(zero)),
+  validator("結果は正の数である必要があります", greaterThan(0))
+  );
+
+//sqrPost(_.identity, 0);
+//sqrPost(_.identity, -1);
+//sqrPost(_.identity, 'abc');
+//p(sqrPost(_.identity, 100));
+
+var megaCheckedSqr = _.compose(partial(sqrPost, _.identity), checkedSqr);
+//p(megaCheckedSqr(10));
+//megaCheckedSqr(0);
+//megaCheckedSqr('');
+//megaCheckedSqr(NaN);
