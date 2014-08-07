@@ -15,3 +15,4 @@ function cat() {
 function construct(head, tail) {
   return cat([head], _.toArray(tail))
 }
+
