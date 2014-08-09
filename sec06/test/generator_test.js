@@ -20,8 +20,8 @@ describe('genHead', function() {
   });
 });
 
-describe('genTake', function() {
 
+describe('genTake', function() {
   it('0, intsを渡すと[]を返す', function() {
     expect(sut.genTake(0, ints)).to.eql([]);
   });
@@ -37,6 +37,4 @@ describe('genTake', function() {
   it('100000, intsを渡すと[0,1,..,9999]を返す', function() {
     expect(sut.genTake(10000, ints)).to.eql(_.range(10000));
   });
-
-
 });
