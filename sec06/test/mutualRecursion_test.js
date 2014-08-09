@@ -5,11 +5,17 @@ var expect = require('expect.js');
 describe('evenSteven', function() {
   it('4を渡すとtrueが返る', function() {
     expect(sut.evenSteven(4)).to.be.true;
-  })
+  });
 
   it('11を渡すとfalseが返る', function() {
     expect(sut.evenSteven(11)).to.be.false;
-  })
+  });
+
+  it('100000を渡すとtrueが返る', function() {
+    expect(sut.evenSteven(100000)).to.be.true;
+  });
+
+
 });
 
 describe('oddJohn', function() {
@@ -21,3 +27,4 @@ describe('oddJohn', function() {
     expect(sut.oddJohn(11)).to.be.true;
   })
 });
+
