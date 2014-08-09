@@ -10,7 +10,7 @@ function fail (thing) {
 // function warn(thing) {
 //   console.log(["警告：", thing].join(''));
 // }
-function (str) {
+function warn(str) {
   console.log("有効な年齢ではなさそうなものが入力されている。");
 }
 
