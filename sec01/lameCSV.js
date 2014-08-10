@@ -29,6 +29,3 @@ function selectHairColor(table) {
   }))
 }
 
-
-// p (selectHairColor(peopleTable));
-// p (mergeResults(selectNames(peopleTable), selectAges(peopleTable)));
