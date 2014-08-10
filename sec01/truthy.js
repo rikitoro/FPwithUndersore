@@ -1,6 +1,8 @@
 exports.existy = existy;
 exports.truthy = truthy;
 exports.doWhen = doWhen;
+exports.executeIfHasField = executeIfHasField;
+
 
 var _ = require('underscore');
 
@@ -26,22 +28,3 @@ function executeIfHasField(target, name) {
     return result;
   });
 }
-
-///////////////////////////////////
-var p = console.log;
-// p (existy(null));
-// p (existy(undefined));
-// p (existy({}.notHere));
-// p (existy((function(){})()));
-// p (existy(0));
-// p (existy(false));
-// p ("/////")
-// p ( truthy(false) );
-// p ( truthy(undefined) );
-// p ( truthy(0) );
-// p ( truthy('') );
-// p (executeIfHasField([1,2,3], 'reverse'));
-// p (executeIfHasField({foo: 42}, 'foo'));
-// p (executeIfHasField([1,2,3], 'notHere'));
-// p ([null, undefined, 1, 2, false].map(existy));
-// p ([null, undefined, 1, 2, false].map(truthy));
