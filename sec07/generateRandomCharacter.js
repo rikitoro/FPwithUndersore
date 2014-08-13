@@ -17,3 +17,4 @@ function generateString (charGen, len) {
 
 var composedRandomString = partial1(generateString, generateRandomCharacter);
 exports.composedRandomString = composedRandomString;
+exports.rand = rand;
