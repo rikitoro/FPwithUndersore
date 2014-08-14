@@ -28,7 +28,7 @@ describe('SafeQueue', function() {
 
   it('SafeQueue.prototype.enqueueも置き換えてしまえる', function() {
     sut.SafeQueue.prototype.enqueue = function(x) { return x * x; };
-    expect(q.enqueue(42)).to.eql(1764);
+    expect(q.enqueue(42)).to.be(1764);
   });
 
 
