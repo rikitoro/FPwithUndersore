@@ -1,4 +1,5 @@
 var _ = require('underscore');
+var cat = require('./cat.js').cat;
 
 function LazyChain (obj) {
   this._calls = [];
@@ -22,4 +23,16 @@ LazyChain.prototype.force = function() {
   }, this._target);
 };
 
+//////////////////////////////////////////
+
+function LazyChainChainChain(obj) {
+  var isLC = (obj instanceof LazyChain);
+
+  this._calls  = isLC ? cat(obj._calls, []) : [];
+  this._target = isLC ? obj._target : obj;
+}
+
+LazyChainChainChain.prototype = LazyChain.prototype;
+
 exports.LazyChain = LazyChain;
+exports.LazyChainChainChain = LazyChainChainChain;
