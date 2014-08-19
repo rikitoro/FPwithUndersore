@@ -1,20 +1,6 @@
-var lyrics = [];
+exports.lyricSegment = lyricSegment;
+exports.song = song;
 
-for (var bottles = 99; bottles > 0; bottles--) {
-  lyrics.push(bottles + "本のビールが残ってる");
-  lyrics.push(bottles + "本のビール");
-  lyrics.push("ひとつ取って、隣に回せ");
-  if (bottles > 1) {
-    lyrics.push((bottles - 1) + "本のビールが残ってる");
-  } else {
-    lyrics.push("もうビールは残ってない");
-  }
-}
-
-var p = console.log;
-// p (lyrics);
-
-//////////////////////////////////////////////////////////
 var _ = require('underscore');
 
 function lyricSegment (n) {
@@ -31,8 +17,6 @@ function lyricSegment (n) {
     .value();
 }
 
-// p (lyricSegment(9));
-
 function song(start, end, lyricGen) {
   return _.reduce(_.range(start, end, -1),
     function (acc, n) {
@@ -40,4 +24,4 @@ function song(start, end, lyricGen) {
     }, []);
 }
 
-p ( song(99, 0, lyricSegment) );
+//p ( song(99, 0, lyricSegment) );
