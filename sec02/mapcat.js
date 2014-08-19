@@ -18,11 +18,6 @@ function mapcat(fun, coll) {
   return cat.apply(null, _.map(coll, fun));
 }
 
-// p ( mapcat(function(e){
-//   return construct(e, ["*", "**"])
-// }, [1, 2, 3]) );
-
-///////////////////////////////////////
 function butlast(coll) {
   return _.toArray(coll).slice(0, -1);
 }
@@ -33,4 +28,3 @@ function interpose(inter, coll) {
   }, coll));
 }
 
-// p( interpose("*", [1,2,3]) );
