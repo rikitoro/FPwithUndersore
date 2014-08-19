@@ -6,12 +6,6 @@ p( _.find(['a', 'b', 3, 'd'], _.isNumber) );
 
 p( _.reject(['a', 'b', 3, 'd'], _.isNumber) );
 
-function complement(pred) {
-  return function () {
-    return !pred.apply(null, _.toArray(arguments));
-  };
-}
-
 p( _.filter(['a', 'b', 3, 'd'], complement(_.isNumber)) );
 
 p( _.all([1, 2, 3, 4], _.isNumber));
