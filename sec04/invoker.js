@@ -26,14 +26,6 @@ function invoker(name, method) {
   };
 }
 
-//////////////////////////////////////////
-// var p = console.log;
-// var f = always(function(){});
-// var g = always(function(){});
-// p(f === f);
-// p(f === g);
-// var repeatedly = require('./iterateUntil.js').repeatedly;
-// p(repeatedly(3, always('Odelay!!!')));
+var rev = invoker('reverse', Array.prototype.reverse);
 
-// var rev = invoker('reverse', Array.prototype.reverse);
-// p(_.map([[1,2,3],[5,6,7]], rev));
+exports.rev = rev;
