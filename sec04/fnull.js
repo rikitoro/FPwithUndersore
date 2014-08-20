@@ -1,4 +1,5 @@
 exports.fnull = fnull;
+exports.defaults = defaults;
 
 var _ = require('underscore');
 var existy = require('./truthy.js').existy;
@@ -21,19 +22,3 @@ function defaults(df) {
   };
 }
 
-
-////////////////////////////////////////////
-// var nums = [1, 2, 3, null, 5];
-var p = console.log;
-// // p(_.reduce(nums, function(total, n) { return total * n; }));
-// var safeMult = fnull(function(total, n) { return total * n}, 1, 1);
-// p(_.reduce(nums, safeMult));
-
-///////////////////////////////////////////////
-// function doSomething(config) {
-//   var lookup = defaults({critical: 108});
-//   return lookup(config, 'critical');
-// }
-
-// p(doSomething({critical: 9}));
-// p(doSomething({}));
