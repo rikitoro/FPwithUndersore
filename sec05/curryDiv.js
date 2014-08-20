@@ -1,4 +1,5 @@
-// var _ = require('underscore');
+exports.leftCurryDiv = leftCurryDiv;
+exports.rightCurryDiv = rightCurryDiv;
 
 function leftCurryDiv (n) {
   return function(d) {
@@ -6,16 +7,16 @@ function leftCurryDiv (n) {
   };
 }
 
-function rightCurreyDiv(d) {
+function rightCurryDiv(d) {
   return function(n) {
     return n/d;
   };
 }
 
-var divide10By = leftCurryDiv(10);
+// var divide10By = leftCurryDiv(10);
 
-var p = console.log;
-p(divide10By(2));
+// var p = console.log;
+// p(divide10By(2));
 
-var divideBy10 = rightCurreyDiv(10);
-p(divideBy10(2));
+// var divideBy10 = rightCurreyDiv(10);
+// p(divideBy10(2));
