@@ -1,5 +1,5 @@
 exports.always = always;
-
+exports.invoker = invoker;
 
 var _ = require('underscore');
 var existy = require('./truthy.js').existy;

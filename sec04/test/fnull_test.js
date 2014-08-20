@@ -28,7 +28,7 @@ describe('defaults', function() {
       return lookup(config, 'critical');
     };
 
-  it('指定したkey-valueペアがオブジェクトにない場合デフォルト値を追加できる',function() {
+  it('設定したkey-valueペアがオブジェクトにない場合デフォルト値が返される',function() {
     expect(doSomething({hoge: 12})).to.be(108);
   });
 
