@@ -1,4 +1,6 @@
+exports.repeat = repeat;
 exports.repeatedly = repeatedly;
+exports.iterateUntil = iterateUntil;
 
 var _ = require('underscore');
 
@@ -19,25 +21,3 @@ function iterateUntil(fun, check, init) {
   }
   return ret;
 }
-
-/////////////////////////////////////////////////////
-// var p = console.log;
-// p(repeat(4, "Major"));
-// p(repeatedly(3, function() {
-//   return Math.floor((Math.random()*10) + 1);
-// }));
-// p(repeatedly(3, function() { return "Odelay!"; }));
-
-// p(
-//   repeatedly(3, function(n) {
-//     var id = 'id' + n;
-//     // $('body').appends($("<p>Odelay!</p>").attr('id',id)) // need jQuery
-//     return id;
-//   })
-// )
-
-// p(
-//   iterateUntil(function(n) { return n + n; },
-//     function(n) { return n <= 1024;},
-//     1)
-// );
