@@ -8,16 +8,16 @@ var construct = require('./construct.js').construct;
 var invoker = require('./invoker.js').invoker;
 var always = require('./invoker.js').always;
 
-var p = console.log;
+// var p = console.log;
 
 
 
-var str = dispatch(invoker('toString', Array.prototype.toString),
-  invoker('toString', String.prototype.toString));
+// var str = dispatch(invoker('toString', Array.prototype.toString),
+//   invoker('toString', String.prototype.toString));
 
-p(str("abc"));
-p(str(_.range(10))); 
-p(str({}));
+// p(str("abc"));
+// p(str(_.range(10))); 
+// p(str({}));
 
 function stringReverse(s) {
   if (!_.isString(s)) return undefined;
