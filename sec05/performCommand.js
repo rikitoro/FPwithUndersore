@@ -1,15 +1,6 @@
+exports.performCommandHardcoded = performCommandHardcoded;
+
 var dispatch = require('./dispatch.js').dispatch;
-
-/////////////////////////////////////////////////
-
-// var _ = require('underscore');
-// var existy = require('./truthy.js').existy;
-// var construct = require('./construct.js').construct;
-// var invoker = require('./invoker.js').invoker;
-// var always = require('./invoker.js').always;
-
-var p = console.log;
-
 
 function performCommandHardcoded(command) {
   var result;
@@ -44,10 +35,6 @@ function alert(type) {
   throw new Error;
 }
 
-// p(performCommandHardcoded({type: 'notify', message: 'hi'}));
-// p(performCommandHardcoded({type: 'join', target: 'waiting-room'}));
-// p(performCommandHardcoded({type: 'wat'}));
-
 /////////////////////////////
 
 function isa (type, action) {
@@ -62,9 +49,9 @@ var performCommand = dispatch(
   function(obj) { alert(obj.type); }
   );
 
-// p(performCommand({type: 'notify', message: 'hi'}));
-// p(performCommand({type: 'join', target: 'waiting-room'}));
-// p(performCommand({type: 'wat', target: 'room'}));
+exports.performCommand = performCommand;
+
+/////////
 
 var performAdminCommand = dispatch(
   isa('kill', function(obj) { return shutdown(obj.hostname); }),
@@ -76,13 +63,17 @@ function shutdown(hostname) {
   return true;
 }
 
-// p(performAdminCommand({type: 'kill', hostname: 'localhost'}));
-// p(performAdminCommand({type: 'join', target: 'foo'}));
+exports.performAdminCommand = performAdminCommand;
+
+//////////
 
 var performTrialUserCommand = dispatch(
   isa('join', function(obj) { alert("許可されるまで参加できません")} ),
   performCommand
   );
+
+exports.performTrialUserCommand = performTrialUserCommand;
+
 
 // p(performTrialUserCommand({type: 'join', target: 'foo'}));
 // p(performTrialUserCommand({type: 'notify', message: 'hogehoge'}));
