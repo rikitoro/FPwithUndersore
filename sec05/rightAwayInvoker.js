@@ -1,3 +1,5 @@
+exports.rightAwayInvoker = rightAwayInvoker;
+
 var _ = require('underscore');
 var invoker = require('./invoker.js').invoker
 
@@ -8,10 +10,3 @@ function rightAwayInvoker () {
 
   return method.apply(target, args);
 }
-
-////
-var p = console.log;
-p(rightAwayInvoker(Array.prototype.reverse, [1,2,3]));
-
-///
-p(invoker('reverse', Array.prototype.reverse)([1,2,3]));
