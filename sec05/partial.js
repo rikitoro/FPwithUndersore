@@ -30,25 +30,3 @@ function partial (fun /*, pargs */) {
   };
 }
 
-// /////////////////////////////////////
-// var p = console.log;
-
-// function div (n, d) {
-//   return n / d;
-// }
-
-// function sum3 (a, b, c) {
-//   return a + b + c;
-// }
-
-// var over10Part1 = partial1(div, 10);
-// p(over10Part1(5));
-
-// var div10By2 = partial2(div, 10, 2);
-// p(div10By2());
-
-// var add13 = partial2(sum3, 10, 3);
-// p(add13(4));
-
-// var over10partial = partial(div, 10);
-// p(over10partial(2));
