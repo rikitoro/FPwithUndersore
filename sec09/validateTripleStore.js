@@ -14,6 +14,4 @@ var validateTripleStore = partial1(
   condition1(validateTriples),
   _.identity);
 
-
-//console.log(validateTripleStore([[2,1,3],[7,7,1],[0,9,5]]));
 exports.validateTripleStore = validateTripleStore;
