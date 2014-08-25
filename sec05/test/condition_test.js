@@ -25,11 +25,11 @@ describe('condition1', function() {
     });
 
     it('1つ目のvalidatorをパスしない場合は1つ目のvalidatorに渡したメッセージで例外を投げる',function() {
-      expect(function() {preCondition(sqr, 0)}).to.throwError("0ではいけません");
+      expect(function() {preCondition(sqr, 0)}).to.throwError(/0ではいけません/);
     });
 
     it('2つ目のvalidatorをパスしない場合は2つ目のvalidatorに渡したメッセージで例外を投げる',function() {
-      expect(function() {preCondition(sqr, 'abc')}).to.throwError("引数は数値である必要があります。");
+      expect(function() {preCondition(sqr, 'abc')}).to.throwError(/引数は数値である必要があります/);
     });
   });
 
@@ -50,11 +50,11 @@ describe('condition1', function() {
     });
   
     it('事前条件をパスしない場合は事前条件のvalidatorに設定したメッセージで例外を投げる',function() {
-      expect(function() {checkedFunc(0);}).to.throwError();
+      expect(function() {checkedFunc(0);}).to.throwError(/0ではいけません/);
     });
 
     it('事後条件をパスしない場合は事後条件のvalidatorに設定したメッセージで例外を投げる',function() {
-      expect(function() {checkedFunc(NaN);}).to.throwError();
+      expect(function() {checkedFunc(NaN);}).to.throwError(/結果は正の数である必要があります/);
     });
 
 
