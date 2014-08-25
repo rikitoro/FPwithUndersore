@@ -7,8 +7,8 @@ describe('parseAge', function() {
     expect(sut.parseAge('42')).to.be(42);
   });
 
-  it.skip("42を渡すと例外を投げる", function() {
-    expect(sut.parseAge(42)).to.throwError();
+  it("42を渡すと例外を投げる", function() {
+    expect(function() {sut.parseAge(42)}).to.throwError();
   });
 
   it("'frob'を渡すと0を返す", function() {

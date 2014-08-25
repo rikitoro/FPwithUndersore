@@ -10,8 +10,5 @@ var withinRange = checker(
   validator("20より小さい必要があります", lessThan(20))
   );
 
-////
-var p = console.log;
-p(withinRange(15));
-p(withinRange(3));
-p(withinRange(21));
+exports.withinRange = withinRange;
+
