@@ -18,73 +18,33 @@ function aMap(obj) {
 
 /////////////////
 
-var zero = validator("0ではいけません", function(n) { return 0 === n; });
-var number = validator("引数は数値である必要があります", _.isNumber);
+// var zero = validator("0ではいけません", function(n) { return 0 === n; });
+// var number = validator("引数は数値である必要があります", _.isNumber);
 
-function sqr (n) {
-  if (!number(n)) throw new Error(number.message);
-  if (zero(n))    throw new Error(zero.message);
-  return n * n;
-}
+// function sqr (n) {
+//   if (!number(n)) throw new Error(number.message);
+//   if (zero(n))    throw new Error(zero.message);
+//   return n * n;
+// }
 
 //p(sqr(10));
 //p(sqr(0));
 //p(sqr(''));
 
-function condition1 (/* validators */) {
-  var validators = _.toArray(arguments);
+// function condition1 (/* validators */) {
+//   var validators = _.toArray(arguments);
 
-  return function(fun, arg) {
-    var errors = mapcat(function(isValid) {
-      return isValid(arg) ? [] : [isValid.message]
-    }, validators);
+//   return function(fun, arg) {
+//     var errors = mapcat(function(isValid) {
+//       return isValid(arg) ? [] : [isValid.message]
+//     }, validators);
 
-    if (!_.isEmpty(errors))
-      throw new Error(errors.join(", "));
+//     if (!_.isEmpty(errors))
+//       throw new Error(errors.join(", "));
 
-    return fun(arg);
-  };
-}
-
-function complement (pred) {
-  return function() {
-    return !pred.apply(null, _.toArray(arguments));
-  };
-}
-
-var sqrPre = condition1(
-  validator("0ではいけません", complement(zero)),
-  validator("引数は数値である必要があります。", _.isNumber)
-  );
-
-//p(sqrPre(_.identity, 10));
-//p(sqrPre(_.identity, ''));
-//p(sqrPre(_.identity, 0));
-
-function uncheckedSqr (n) {
-  return n * n;
-}
-
-//p(uncheckedSqr(''));
-
-var checkedSqr = partial1(sqrPre, uncheckedSqr);
-//p(checkedSqr(0));
-//p(checkedSqr(''));
-
-function isEven (n) {
-  return (n % 2) === 0;
-}
-
-var sillySquare = partial1(
-  condition1(validator("偶数を入力してください", isEven)),
-  checkedSqr
-  );
-
-//p(sillySquare(10));
-//p(sillySquare(11));
-//p(sillySquare(''));
-//p(sillySquare(0));
-
+//     return fun(arg);
+//   };
+// }
 ////////////////////////////////////
 
 var validateCommand = condition1(
@@ -137,21 +97,3 @@ var composedMapcat = _.compose(splat(cat), _.map);
 
 /////////////////////////////////////////////
 
-var greaterThan = curry2(function(lhs, rhs) { return lhs > rhs; });
-
-var sqrPost = condition1(
-  validator("結果は数値である必要があります", _.isNumber),
-  validator("結果はゼロでない必要があります", complement(zero)),
-  validator("結果は正の数である必要があります", greaterThan(0))
-  );
-
-//sqrPost(_.identity, 0);
-//sqrPost(_.identity, -1);
-//sqrPost(_.identity, 'abc');
-//p(sqrPost(_.identity, 100));
-
-var megaCheckedSqr = _.compose(partial(sqrPost, _.identity), checkedSqr);
-//p(megaCheckedSqr(10));
-//megaCheckedSqr(0);
-//megaCheckedSqr('');
-//megaCheckedSqr(NaN);
