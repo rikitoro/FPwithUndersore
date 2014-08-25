@@ -8,5 +8,6 @@ function queue (/* arguments */) {
 
 var enqueue = invoker('enqueue', SafeQueue.prototype.enqueue);
 
-exports.queue = queue;
 exports.enqueue = enqueue;
+exports.queue = queue;
+
