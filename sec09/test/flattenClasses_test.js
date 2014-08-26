@@ -3,6 +3,8 @@ var sut = require('../flattenClasses.js');
 var expect = require('expect.js');
 var always = require('../invoker.js').always;
 var note = require('../fail.js').note;
+var construct = require('../construct.js').construct;
+var _ = require('underscore');
 
 describe('Container',function() {
   it('値を渡してインスタンスを生成すると渡した値を_valueプロパティに保持する',function() {
@@ -51,11 +53,45 @@ describe('Hole',function() {
       h.watch(function(old, nu) { note(["Veranderende", old,"tot",nu].join(''));});
       expect(h.setValue(10)).to.be(10);
     });
-
-
-
+  });
+  describe('snapshot',function() {
+    it('値を渡してインスタンス生成した後snapshotを取るとインスタンス生成時に渡した値を返す',function() {
+      var h = new sut.Hole(42);
+      expect(h.snapshot()).to.be(42);
+    });
+    it('swapに関数を渡したのちsnapshotを取るとswapで評価した値を返す',function() {
+      var h = new sut.Hole(42);
+      h.swap(always(99));
+      expect(h.snapshot()).to.be(99);
+    });
 
   });
 
+});
 
+describe('SwapMixin',function() {
+  it('#swapにconstructと配列を渡すと_valueフィールドと配列をつなげた配列を返す',function() {
+    var o = {_value: 0, setValue: _.identity};
+    _.extend(o, sut.SwapMixin);
+    expect(o.swap(construct, [1,2,3])).to.eql([0,1,2,3]);
+  });
+
+});
+
+describe('CAS',function() {
+  describe('swap', function() {
+    it('設定した値と同じ値を渡すと設定値を変更できる',function() {
+      var c = new sut.CAS(42);
+      c.swap(42, always(-1));
+      expect(c.snapshot()).to.be(-1);
+    });
+
+    it('設定した値と異なる値を渡すと設定値は変更されない',function() {
+      var c = new sut.CAS(108);
+      c.swap('not the value', always(100000));
+      expect(c.snapshot()).to.be(108);
+    });
+
+
+  });
 });

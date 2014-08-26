@@ -2,8 +2,8 @@ var _ = require('underscore');
 var fail = require('./fail.js').fail;
 var existy = require('./truthy.js').existy;
 var polyToString = require('./polyToString.js').polyToString;
-
-
+var construct = require('./construct.js').construct;
+var deepClone = require('./deepClone.js').deepClone;
 
 function Container (val) {
   this._value = val;
@@ -59,11 +59,64 @@ var ValidateMixin = {
 };
 //////////////////////////////
 
+var SwapMixin = {
+  swap: function(fun /*, args */) {
+    var args = _.rest(arguments);
+    var newValue = fun.apply(this, construct(this._value, args))
+    return this.setValue(newValue);
+  },
+};  
+
+////////////////////////////////
+var SnapshotMixin = {
+  snapshot: function() {
+    return deepClone(this._value);
+  }
+};
+
+///////////////////////////////
 _.extend(Hole.prototype
   , HoleMixin
   , ValidateMixin
-  , ObserverMixin);
+  , ObserverMixin
+  ////
+  , SwapMixin
+  , SnapshotMixin
+  );
+
+////////////////////////////////
+
+var CAS = function(val) {
+  Hole.call(this, val);
+};
+
+////////////////////////////////
+
+var CASMixin = {
+  swap: function(oldValue, f) {
+    if (this._value === oldValue) {
+      this.setValue(f(this._value));
+      return this._value;
+    } else {
+      return undefined;
+    }
+  },
+};
+
+
+/////////////////////////////
+
+_.extend(CAS.prototype
+  , HoleMixin
+  , ValidateMixin
+  , ObserverMixin
+  , SwapMixin
+  , CASMixin
+  , SnapshotMixin
+  );
 
 //////////////////////////////
 exports.Container = Container;
 exports.Hole = Hole;
+exports.SwapMixin = SwapMixin;
+exports.CAS = CAS;
