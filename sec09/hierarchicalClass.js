@@ -14,3 +14,4 @@ ObservedContainerClass.prototype = new ContainerClass();
 HoleClass.prototype = new ObservedContainerClass();
 CASClass.prototype = new HoleClass();
 TableBaseClass.prototype = new HoleClass();
+
