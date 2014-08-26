@@ -15,7 +15,7 @@ function warn(str) {
 }
 
 
-// function note(thing) {
-//   console.log(["情報：", thing].join(''));
-// }
-function note () {}
+function note(thing) {
+  console.log(["情報：", thing].join(''));
+}
+// function note () {}
