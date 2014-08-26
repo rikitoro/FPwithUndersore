@@ -9,8 +9,8 @@ describe('queue', function() {
 
 describe('enqueue', function() {
   var q = sut.queue(1,2,3);
-  it.skip('引数にqueueと値を渡すとqueueに値を追加した新しいオブジェクトを返す',function() {
-    expect(sut.enqueue(q,42)).to.eql({_q: [1,2,3,42]});
+  it('引数にqueueと値を渡すとqueueに値を追加した新しいオブジェクトを返す',function() {
+    expect(sut.enqueue(q, 42)).to.eql({_q:[1,2,3,42]});
   });
 });
 
